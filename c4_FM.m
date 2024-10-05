@@ -1,0 +1,34 @@
+clc;
+clear all;
+close all;
+Am=1;
+Ac=1;
+fs=10000;
+fm=35;
+fc=500;
+B =10;
+t=(0:0.1*fs)/fs;
+m=(Am*cos(2*pi*fm*t))
+subplot(4,1,1);
+plot(t,m,'r');
+title('Messsage Signal');
+xlabel('time (t)');
+ylabel('Amplitude'); 
+c=(Ac*cos(2*pi*fc*t));
+subplot(4,1,2);
+plot(t,c,'r');
+title('Carrier Signal');
+xlabel('time (t)');
+ylabel('Amplitude');
+s=Ac*cos(2*pi*fc*t+B*(sin(2*pi*fm*t)));
+subplot(4, 1, 3);
+plot(t,s,'b');
+xlabel('time(t)');
+ylabel('Amplitude');
+title('Frequency modulated Signal');
+p=demod(s,fc,fs,'fm')
+subplot(4, 1, 4);
+plot(t,p,'g');
+xlabel('time(t)');
+ylabel('Amplitude');
+title('Frequency Demodulated Signal');
